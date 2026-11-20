@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1320">
+  <meta name="description" content="HST Unlock — интерактивный опрос для совершеннолетних потребителей 21+">
+  <title>HST Unlock</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержимому</a>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <section id="loginView" class="login-view">
+    <div class="login-art" aria-hidden="true">
+      <div class="brand-mark brand-mark--large"><span></span><span></span><span></span></div>
+      <div class="orb orb-a"></div><div class="orb orb-b"></div>
+      <div class="login-copy"><p class="eyebrow">FIELD EXPERIENCE · UZBEKISTAN</p><h1>Каждый контакт —<br><em>осмысленный диалог.</em></h1><p>Персональный интерактив для совершеннолетних потребителей.</p></div>
+    </div>
+    <main class="login-panel" id="main">
+      <form id="loginForm" class="login-card" autocomplete="on">
+        <div class="mobile-brand"><div class="brand-mark"><span></span><span></span><span></span></div><b>HST UNLOCK</b></div>
+        <p class="eyebrow">ЗАЩИЩЁННЫЙ ДОСТУП</p>
+        <h2>С возвращением</h2>
+        <p class="muted">Войдите в кабинет, чтобы начать новый контакт.</p>
+        <label class="field"><span>Логин</span><input name="login" autocomplete="username" value="hst01" required placeholder="Ваш логин"></label>
+        <label class="field"><span>Пароль</span><span class="password-wrap"><input id="password" name="password" type="password" autocomplete="current-password" required placeholder="••••••••"><button id="togglePassword" type="button" class="icon-button" aria-label="Показать пароль">◉</button></span></label>
+        <button class="button button--primary button--full" type="submit"><span>Войти в кабинет</span><b aria-hidden="true">→</b></button>
+        <p id="loginError" class="form-error" role="alert"></p>
+        <div class="demo-note"><span>Демо</span><code>hst01</code><code>Demo-HST-2026!</code></div>
+        <p class="legal-mini">Только для авторизованных сотрудников. Действия регистрируются.</p>
+      </form>
+    </main>
+  </section>
+
+  <div id="appView" class="app-view hidden">
+    <aside class="sidebar">
+      <div class="side-logo"><div class="brand-mark"><span></span><span></span><span></span></div><strong>HST<br>UNLOCK</strong></div>
+      <nav aria-label="Основная навигация">
+        <button class="nav-item active" data-nav="dashboard"><span>⌂</span><b>Обзор</b></button>
+        <button class="nav-item" data-nav="contacts"><span>◎</span><b>Контакты</b></button>
+        <button class="nav-item" data-action="new-contact"><span>＋</span><b>Новый контакт</b></button>
+      </nav>
+      <div class="side-foot"><button id="sourcesButton" class="nav-item"><span>i</span><b>Источники</b></button><button id="logoutButton" class="nav-item"><span>↗</span><b>Выйти</b></button></div>
+    </aside>
+
+    <div class="shell">
+      <header class="topbar">
+        <div><p id="dateLabel" class="eyebrow"></p><h1 id="greeting">Добрый день</h1></div>
+        <div class="profile"><div class="profile-copy"><b id="profileName"></b><span id="profileTerritory"></span></div><div id="profileAvatar" class="avatar">H</div></div>
+      </header>
+
+      <main id="dashboardView" class="dashboard content-view">
+        <section class="hero-card">
+          <div class="hero-copy"><span class="pill pill--lime">● LIVE</span><h2>Готовы к новому<br>диалогу?</h2><p>Передайте планшет потребителю после выбора аудитории.</p><button class="button button--light" data-action="new-contact">Новый контакт <b>→</b></button></div>
+          <div class="hero-visual" aria-hidden="true"><div class="hero-ring"></div><div class="mini-lock"><div class="mini-shackle"></div><div class="mini-body">⌁</div></div><span>UNLOCK<br>THE<br>DIALOGUE</span></div>
+        </section>
+
+        <section class="metrics" aria-label="Ключевые показатели">
+          <article class="metric"><div class="metric-head"><span>Всего контактов</span><i class="metric-icon metric-icon--violet">◎</i></div><strong id="statTotal">—</strong><small>завершено</small></article>
+          <article class="metric"><div class="metric-head"><span>Сегодня</span><i class="metric-icon metric-icon--lime">↗</i></div><strong id="statToday">—</strong><small>контактов</small></article>
+          <article class="metric"><div class="metric-head"><span>LAS / LAU</span><i class="metric-icon metric-icon--blue">◫</i></div><strong><span id="statLas">—</span><em>/</em><span id="statLau">—</span></strong><small>аудитории</small></article>
+          <article class="metric"><div class="metric-head"><span>Завершение</span><i class="metric-icon metric-icon--orange">✓</i></div><strong id="statConversion">—</strong><small>всех стартов</small></article>
+        </section>
+
+        <section class="dashboard-grid">
+          <article class="panel chart-panel"><div class="panel-head"><div><p class="eyebrow">ДИНАМИКА</p><h3>Контакты за 7 дней</h3></div><span id="avgDuration" class="soft-pill">≈ — мин.</span></div><div id="chart" class="chart" aria-label="График контактов"></div></article>
+          <article class="panel split-panel"><div class="panel-head"><div><p class="eyebrow">АУДИТОРИИ</p><h3>Структура контактов</h3></div></div><div class="donut-wrap"><div id="donut" class="donut"><span id="donutTotal">0</span></div><div class="legend"><p><i class="dot dot--purple"></i><span>LAS · сигареты</span><b id="legendLas">0</b></p><p><i class="dot dot--lime"></i><span>LAU · IQOS</span><b id="legendLau">0</b></p></div></div></article>
+        </section>
+
+        <section class="panel logs-panel"><div class="panel-head"><div><p class="eyebrow">АКТИВНОСТЬ</p><h3>Последние контакты</h3></div><button id="showAllLogs" class="text-button">Показать все →</button></div><div class="table-wrap"><table><thead><tr><th>Контакт</th><th>Аудитория</th><th>Дата и время</th><th>Длительность</th><th>Результат</th><th>Статус</th></tr></thead><tbody id="logsBody"></tbody></table></div><div id="emptyLogs" class="empty hidden"><span>◎</span><h4>Контактов пока нет</h4><p>Начните первый интерактив.</p></div></section>
+      </main>
+
+      <main id="contactsView" class="contacts-view content-view hidden">
+        <div class="page-head"><div><p class="eyebrow">ЖУРНАЛ</p><h2>Все контакты</h2><p>История опросов текущего HST.</p></div><button class="button button--dark" data-action="new-contact">＋ Новый контакт</button></div>
+        <section class="panel"><div class="filters"><button class="chip active" data-filter="all">Все</button><button class="chip" data-filter="LAS">LAS</button><button class="chip" data-filter="LAU">LAU</button><button class="chip" data-filter="completed">Завершённые</button><button class="chip" data-filter="abandoned">Прерванные</button></div><div class="table-wrap"><table><thead><tr><th>Контакт</th><th>Аудитория</th><th>Дата и время</th><th>Длительность</th><th>Результат</th><th>Статус</th></tr></thead><tbody id="allLogsBody"></tbody></table></div></section>
+      </main>
+    </div>
+  </div>
+
+  <section id="surveyView" class="survey-view hidden" aria-label="Интерактивный опрос">
+    <header class="survey-topbar"><div class="side-logo side-logo--survey"><div class="brand-mark"><span></span><span></span><span></span></div><strong>HST UNLOCK</strong></div><div class="progress-wrap"><span id="progressLabel">Шаг 1 из 5</span><div class="progress"><i id="progressBar"></i></div></div><button id="exitSurvey" class="round-button" aria-label="Завершить и выйти">×</button></header>
+    <main class="survey-shell">
+      <div id="surveyContent" class="survey-content"></div>
+      <aside id="lockStage" class="lock-stage" aria-label="Индикатор прохождения">
+        <div class="lock-aura"></div>
+        <div id="lock" class="lock" data-stage="0" aria-hidden="true">
+          <div class="shackle"><i></i></div>
+          <div class="lock-body"><div class="lock-face"><span class="keyhole"></span><small>UNLOCK</small></div></div>
+          <div class="key"><div class="key-head"></div><div class="key-shaft"></div><div class="key-teeth"></div></div>
+        </div>
+        <p id="lockCaption">Ответы откроют персональную рекомендацию</p>
+      </aside>
+    </main>
+    <footer class="health-footer"><b>21+</b><span>Никотин вызывает зависимость. Продукт не без риска. Лучший выбор — полный отказ от табака и никотина.</span></footer>
+  </section>
+
+  <dialog id="audienceDialog" class="modal">
+    <form method="dialog" class="modal-card">
+      <button class="modal-close" value="cancel" aria-label="Закрыть">×</button><p class="eyebrow">НОВЫЙ КОНТАКТ</p><h2>Кто перед вами?</h2><p>Выберите текущую аудиторию. Затем передайте планшет потребителю.</p>
+      <div class="audience-grid"><button id="selectLas" value="LAS" class="audience-card"><span class="audience-code">LAS</span><i class="audience-art">∥</i><b>Курит сигареты</b><small>Совершеннолетний курильщик 21+</small><em>Выбрать →</em></button><button id="selectLau" value="LAU" class="audience-card audience-card--lime"><span class="audience-code">LAU</span><i class="audience-art">◒</i><b>Использует IQOS</b><small>Совершеннолетний пользователь 21+</small><em>Выбрать →</em></button></div>
+      <label class="consent"><input id="adultConsent" type="checkbox"><span>Я подтвердил(а), что потребителю 21 год или больше и он уже использует табачную/никотинсодержащую продукцию.</span></label><p id="consentError" class="form-error"></p>
+    </form>
+  </dialog>
+
+  <dialog id="sourcesDialog" class="modal sources-modal"><div class="modal-card"><button class="modal-close" data-close-dialog="sourcesDialog" aria-label="Закрыть">×</button><p class="eyebrow">ПРОЗРАЧНОСТЬ КОНТЕНТА</p><h2>Источники и ограничения</h2><p>Каталог и формулировки подготовлены по открытым источникам. Проверяйте актуальность ассортимента перед релизом.</p><div class="source-list"><a href="https://uz.iqos.com/ru/shop/product/53/195" target="_blank" rel="noreferrer"><b>IQOS Uzbekistan</b><span>Ассортимент и описания TEREA ↗</span></a><a href="https://uz.iqos.com/ru/discover/technology" target="_blank" rel="noreferrer"><b>IQOS Uzbekistan</b><span>Нагревание табака без горения ↗</span></a><a href="https://ttobacco.uz/index.php/produktsiya" target="_blank" rel="noreferrer"><b>Tashkent Tobacco</b><span>Бренды, представленные в Узбекистане ↗</span></a><a href="https://www.tobaccocontrollaws.org/legislation/uzbekistan/sales-restrictions/minimum-legal-sales-age" target="_blank" rel="noreferrer"><b>Tobacco Control Laws</b><span>Минимальный возраст — 21 год ↗</span></a></div><div class="fact-warning"><b>Важно</b><p>IQOS не является средством отказа от курения и не лечит симптомы. Он не без риска и содержит никотин, вызывающий зависимость. Любые медицинские утверждения исключены.</p></div></div></dialog>
+
+  <dialog id="exitDialog" class="modal confirm-modal"><form method="dialog" class="modal-card"><div class="confirm-icon">↙</div><h2>Прервать контакт?</h2><p>Прогресс будет записан как прерванный опрос.</p><div class="button-row"><button value="cancel" class="button button--ghost">Продолжить</button><button id="confirmExit" value="confirm" class="button button--danger">Прервать</button></div></form></dialog>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
